@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>https://memealerts.com/r/652007949de0004f8b0bb3d1?obsToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjAwNzk0OWRlMDAwNGY4YjBiYjNkMSIsImlhdCI6MTY5NjU5NzkwOH0.j-p0czr9IWJPUj6MUn0ORsvWuCXsKawnZysFok9cGYU&amp;mode=OBS</value>
-  </data>
   <metadata name="TiStartVr.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

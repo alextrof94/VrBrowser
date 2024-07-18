@@ -42,6 +42,8 @@
             NuSize = new NumericUpDown();
             label5 = new Label();
             TiStartVr = new System.Windows.Forms.Timer(components);
+            ChAudioEnable = new CheckBox();
+            CoColorFormat = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)NuCurvature).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NuOffset).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NuSize).BeginInit();
@@ -52,14 +54,13 @@
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox1.Location = new Point(49, 12);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(658, 23);
+            textBox1.Size = new Size(245, 23);
             textBox1.TabIndex = 0;
-            textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // BuLoadUrl
             // 
             BuLoadUrl.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            BuLoadUrl.Location = new Point(713, 12);
+            BuLoadUrl.Location = new Point(921, 12);
             BuLoadUrl.Name = "BuLoadUrl";
             BuLoadUrl.Size = new Size(75, 23);
             BuLoadUrl.TabIndex = 1;
@@ -72,7 +73,7 @@
             RiCss.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             RiCss.Location = new Point(12, 62);
             RiCss.Name = "RiCss";
-            RiCss.Size = new Size(776, 347);
+            RiCss.Size = new Size(984, 347);
             RiCss.TabIndex = 2;
             RiCss.Text = ".ObsPage__widgetContainer--Ra4Ps {\ndisplay: none;\n}";
             RiCss.TextChanged += RiCss_TextChanged;
@@ -171,11 +172,34 @@
             TiStartVr.Interval = 3000;
             TiStartVr.Tick += TiStartVr_Tick;
             // 
+            // ChAudioEnable
+            // 
+            ChAudioEnable.AutoSize = true;
+            ChAudioEnable.Location = new Point(829, 415);
+            ChAudioEnable.Name = "ChAudioEnable";
+            ChAudioEnable.Size = new Size(167, 19);
+            ChAudioEnable.TabIndex = 11;
+            ChAudioEnable.Text = "Enable audio (need restart)";
+            ChAudioEnable.UseVisualStyleBackColor = true;
+            ChAudioEnable.CheckedChanged += ChAudioEnable_CheckedChanged;
+            // 
+            // CoColorFormat
+            // 
+            CoColorFormat.FormattingEnabled = true;
+            CoColorFormat.Items.AddRange(new object[] { "Bgra", "Rgba" });
+            CoColorFormat.Location = new Point(654, 415);
+            CoColorFormat.Name = "CoColorFormat";
+            CoColorFormat.Size = new Size(169, 23);
+            CoColorFormat.TabIndex = 12;
+            CoColorFormat.SelectedIndexChanged += CoColorFormat_SelectedIndexChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(794, 450);
+            ClientSize = new Size(1002, 450);
+            Controls.Add(CoColorFormat);
+            Controls.Add(ChAudioEnable);
             Controls.Add(NuSize);
             Controls.Add(label5);
             Controls.Add(NuOffset);
@@ -213,5 +237,7 @@
         private NumericUpDown NuSize;
         private Label label5;
         private System.Windows.Forms.Timer TiStartVr;
+        private CheckBox ChAudioEnable;
+        private ComboBox CoColorFormat;
     }
 }

@@ -9,13 +9,19 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Size" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">1.2</Value>
     </Setting>
     <Setting Name="Curvature" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">0.2</Value>
+      <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="Offset" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.45</Value>
+    </Setting>
+    <Setting Name="AudioEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ColorFormat" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -46,6 +46,8 @@ namespace VrBrowserTestCore
             NuCurvature.Value = (decimal)Settings.Default.Curvature;
             NuSize.Value = (decimal)Settings.Default.Size;
             NuOffset.Value = (decimal)Settings.Default.Offset;
+            ChAudioEnable.Checked = Settings.Default.AudioEnable;
+            CoColorFormat.SelectedIndex = Settings.Default.ColorFormat;
             TryToStartMainProcess();
         }
 
@@ -113,6 +115,10 @@ namespace VrBrowserTestCore
                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             OpenTK.Graphics.OpenGL4.PixelFormat pixelFormat = OpenTK.Graphics.OpenGL4.PixelFormat.Bgra;
+            switch (Settings.Default.ColorFormat)
+            {
+                case 1: pixelFormat = OpenTK.Graphics.OpenGL4.PixelFormat.Rgba; break;
+            }
 
             GL.TexImage2D(TextureTarget.Texture2D,
                 0,
@@ -322,9 +328,19 @@ namespace VrBrowserTestCore
 
             var settings = new CefSettings()
             {
-                CefCommandLineArgs = { ["enable-media-stream"] = "1", ["autoplay-policy"] = "no-user-gesture-required" }
+                CefCommandLineArgs = {
+                    ["enable-media-stream"] = "1",
+                    ["autoplay-policy"] = "no-user-gesture-required",
+                    ["enable-audio"] = (Settings.Default.AudioEnable) ? "1" : "0",
+                },
+                WindowlessRenderingEnabled = true,
             };
+            if (Settings.Default.AudioEnable)
+            {
+                settings.CefCommandLineArgs.Remove("mute-audio");
+            }
             Cef.Initialize(settings);
+
 
             if (string.IsNullOrEmpty(Settings.Default.URL))
             {
@@ -387,6 +403,18 @@ namespace VrBrowserTestCore
                 OpenVR.Overlay.SetOverlayCurvature(OverlayHandle, Settings.Default.Curvature);
             }
             catch { }
+        }
+
+        private void ChAudioEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.AudioEnable = (bool)ChAudioEnable.Checked;
+            Settings.Default.Save();
+        }
+
+        private void CoColorFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.Default.ColorFormat = CoColorFormat.SelectedIndex;
+            Settings.Default.Save();
         }
     }
 }

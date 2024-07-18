@@ -49,7 +49,7 @@ namespace VrBrowserTestCore.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.2")]
         public float Size {
             get {
                 return ((float)(this["Size"]));
@@ -61,7 +61,7 @@ namespace VrBrowserTestCore.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
         public float Curvature {
             get {
                 return ((float)(this["Curvature"]));
@@ -80,6 +80,30 @@ namespace VrBrowserTestCore.Properties {
             }
             set {
                 this["Offset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AudioEnable {
+            get {
+                return ((bool)(this["AudioEnable"]));
+            }
+            set {
+                this["AudioEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ColorFormat {
+            get {
+                return ((int)(this["ColorFormat"]));
+            }
+            set {
+                this["ColorFormat"] = value;
             }
         }
     }
