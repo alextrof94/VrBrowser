@@ -1,5 +1,5 @@
 # VrBrowser
- Browser showing for VR (memealerts or another source viewer like in OBS)
+ Displaying the browser in VR (displays memealerts or other sources, similar to OBS)
  
 ![App](https://github.com/alextrof94/VrBrowser/blob/main/VrBrowserTestCore/images/App.png)
  
