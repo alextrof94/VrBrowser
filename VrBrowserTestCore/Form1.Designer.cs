@@ -51,7 +51,6 @@
             // 
             // textBox1
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox1.Location = new Point(49, 12);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(245, 23);
