@@ -14,6 +14,8 @@ namespace VrBrowserTestCore
 {
     public partial class Form1 : Form
     {
+        // TODO: multibrowser
+
         ChromiumWebBrowser? browser;
         CVRSystem? VrSystem = null;
         uint HmdId;
