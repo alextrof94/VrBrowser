@@ -284,40 +284,17 @@ namespace VrBrowserTestCore
         {
             var location = new OpenTK.Mathematics.Vector2i(0, -10000);
 
+            GameWindowSettings gwSettings = new GameWindowSettings() { };
             NativeWindowSettings nwSettings = new()
             {
                 Size = new OpenTK.Mathematics.Vector2i(1, 1),
                 Title = "VR Browser Preview",
-                StartVisible = false,
                 WindowBorder = OpenTK.Windowing.Common.WindowBorder.Hidden,
                 Location = location,
-                WindowState = OpenTK.Windowing.Common.WindowState.Minimized,
-                Flags = ContextFlags.Offscreen
             };
-            PreviewGameWindow = new GameWindow(GameWindowSettings.Default, nwSettings) { };
+            PreviewGameWindow = new GameWindow(gwSettings, nwSettings) { IsVisible = false };
 
             GL.ClearColor(new Color4(0.1f, 0, 0, 0.5f));
-
-            // Create vertex array and vertex buffer objects
-            GL.GenVertexArrays(1, out VertexArrayObject);
-            GL.BindVertexArray(VertexArrayObject);
-
-            GL.GenBuffers(1, out VertexBufferObject);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
-
-            // Define the vertices of a quad
-            float[] vertices = {
-                -1.0f, -1.0f, 0.0f, 1.0f, 1.0f,
-                1.0f, -1.0f, 0.0f, 0.0f, 1.0f,
-                1.0f,  1.0f, 0.0f, 0.0f, 0.0f,
-                -1.0f, -1.0f, 0.0f, 1.0f, 1.0f,
-                1.0f,  1.0f, 0.0f, 0.0f, 0.0f,
-                -1.0f,  1.0f, 0.0f, 1.0f, 0.0f
-            };
-
-            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
-
-            GL.BindVertexArray(VertexArrayObject);
         }
 
 
