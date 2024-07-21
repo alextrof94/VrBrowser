@@ -16,6 +16,9 @@ namespace VrBrowserTestCore
         public float Curvature { get; set; } = 0.1f;
         public int ColorFormat { get; set; } = 0;
 
+        public bool MinimizeOnStart { get; set; } = false;
+        public bool MinimizeToTray { get; set; } = false;
+
         public List<Tab> Tabs { get; set; } = new List<Tab>();
     }
 

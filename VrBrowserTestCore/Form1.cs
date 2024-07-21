@@ -26,6 +26,8 @@ namespace VrBrowserTestCore
         ulong OverlayHandle = 0;
         GameWindow? PreviewGameWindow = null;
 
+
+
         public Form1()
         {
             InitializeComponent();
@@ -51,9 +53,28 @@ namespace VrBrowserTestCore
             NuSize.Value = (decimal)ThisAppSettings.Size;
             NuOffset.Value = (decimal)ThisAppSettings.Offset;
             CoColorFormat.SelectedIndex = ThisAppSettings.ColorFormat;
+            ChMinimizeOnStart.Checked = ThisAppSettings.MinimizeOnStart;
+            ChMinimizeToTray.Checked = ThisAppSettings.MinimizeToTray;
+
+            if (ThisAppSettings.MinimizeOnStart)
+            {
+                WindowState = FormWindowState.Minimized;
+            }
 
             LoadPages();
             TryToStartMainProcess();
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                if (ThisAppSettings.MinimizeToTray)
+                {
+                    Hide();
+                    ShowInTaskbar = false;
+                }
+            }
         }
 
         private void TiStartVr_Tick(object sender, EventArgs e)
@@ -362,6 +383,7 @@ namespace VrBrowserTestCore
         private void CoColorFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
             ThisAppSettings.ColorFormat = CoColorFormat.SelectedIndex;
+            SaveAppSettings();
         }
 
 
@@ -595,7 +617,7 @@ namespace VrBrowserTestCore
                     tab.Browser = new ChromiumWebBrowser()
                     {
                         Size = new Size(1920, 1080)
-                    }; 
+                    };
                     tab.Browser.FrameLoadEnd += Browser_FrameLoadEnd;
                 }
 
@@ -644,6 +666,26 @@ namespace VrBrowserTestCore
                 OpenVR.Overlay.SetOverlayCurvature(OverlayHandle, ThisAppSettings.Curvature);
             }
             catch { }
+        }
+
+        private void ChMinimizeOnStart_CheckedChanged(object sender, EventArgs e)
+        {
+            ThisAppSettings.MinimizeOnStart = ChMinimizeOnStart.Checked;
+            SaveAppSettings();
+        }
+
+        private void ChMinimizeToTray_CheckedChanged(object sender, EventArgs e)
+        {
+            ThisAppSettings.MinimizeToTray = ChMinimizeToTray.Checked;
+            SaveAppSettings();
+        }
+
+        private void NoMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            ShowInTaskbar = true;
+            Activate();
         }
     }
 }

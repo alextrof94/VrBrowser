@@ -44,6 +44,8 @@
             CoColorFormat = new ComboBox();
             tabControl1 = new TabControl();
             TaVrSettings = new TabPage();
+            ChMinimizeToTray = new CheckBox();
+            ChMinimizeOnStart = new CheckBox();
             BuApplyVrSettings = new Button();
             label2 = new Label();
             TaAbout = new TabPage();
@@ -54,6 +56,7 @@
             ImButtons = new ImageList(components);
             GrCss = new GroupBox();
             BuTabAdd = new Button();
+            NoMain = new NotifyIcon(components);
             ((System.ComponentModel.ISupportInitialize)NuCurvature).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NuOffset).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NuSize).BeginInit();
@@ -181,7 +184,7 @@
             // 
             CoColorFormat.FormattingEnabled = true;
             CoColorFormat.Items.AddRange(new object[] { "Bgra", "Rgba" });
-            CoColorFormat.Location = new Point(83, 93);
+            CoColorFormat.Location = new Point(83, 131);
             CoColorFormat.Name = "CoColorFormat";
             CoColorFormat.Size = new Size(120, 23);
             CoColorFormat.TabIndex = 12;
@@ -202,6 +205,8 @@
             // 
             // TaVrSettings
             // 
+            TaVrSettings.Controls.Add(ChMinimizeToTray);
+            TaVrSettings.Controls.Add(ChMinimizeOnStart);
             TaVrSettings.Controls.Add(BuApplyVrSettings);
             TaVrSettings.Controls.Add(label2);
             TaVrSettings.Controls.Add(NuSize);
@@ -216,23 +221,45 @@
             TaVrSettings.Padding = new Padding(3);
             TaVrSettings.Size = new Size(614, 422);
             TaVrSettings.TabIndex = 1;
-            TaVrSettings.Text = "VR Settings";
+            TaVrSettings.Text = "Settings";
             TaVrSettings.UseVisualStyleBackColor = true;
+            // 
+            // ChMinimizeToTray
+            // 
+            ChMinimizeToTray.AutoSize = true;
+            ChMinimizeToTray.Location = new Point(6, 182);
+            ChMinimizeToTray.Name = "ChMinimizeToTray";
+            ChMinimizeToTray.Size = new Size(113, 19);
+            ChMinimizeToTray.TabIndex = 16;
+            ChMinimizeToTray.Text = "Minimize to Tray";
+            ChMinimizeToTray.UseVisualStyleBackColor = true;
+            ChMinimizeToTray.CheckedChanged += ChMinimizeToTray_CheckedChanged;
+            // 
+            // ChMinimizeOnStart
+            // 
+            ChMinimizeOnStart.AutoSize = true;
+            ChMinimizeOnStart.Location = new Point(6, 160);
+            ChMinimizeOnStart.Name = "ChMinimizeOnStart";
+            ChMinimizeOnStart.Size = new Size(118, 19);
+            ChMinimizeOnStart.TabIndex = 15;
+            ChMinimizeOnStart.Text = "Minimize on start";
+            ChMinimizeOnStart.UseVisualStyleBackColor = true;
+            ChMinimizeOnStart.CheckedChanged += ChMinimizeOnStart_CheckedChanged;
             // 
             // BuApplyVrSettings
             // 
-            BuApplyVrSettings.Location = new Point(6, 122);
+            BuApplyVrSettings.Location = new Point(6, 93);
             BuApplyVrSettings.Name = "BuApplyVrSettings";
             BuApplyVrSettings.Size = new Size(197, 32);
             BuApplyVrSettings.TabIndex = 14;
-            BuApplyVrSettings.Text = "Apply";
+            BuApplyVrSettings.Text = "Apply position and Save";
             BuApplyVrSettings.UseVisualStyleBackColor = true;
             BuApplyVrSettings.Click += BuApplyVrSettings_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 96);
+            label2.Location = new Point(6, 134);
             label2.Name = "label2";
             label2.Size = new Size(75, 15);
             label2.TabIndex = 13;
@@ -256,7 +283,7 @@
             RiAbout.ReadOnly = true;
             RiAbout.Size = new Size(614, 422);
             RiAbout.TabIndex = 0;
-            RiAbout.Text = "Author: alextrof94 aka GoodVrGames\nGithub: https://github.com/alextrof94/VrBrowser\n\nIcons by Icons8 https://icons8.com/";
+            RiAbout.Text = resources.GetString("RiAbout.Text");
             // 
             // TaBrowser
             // 
@@ -330,6 +357,13 @@
             BuTabAdd.UseVisualStyleBackColor = true;
             BuTabAdd.Click += BuTabAdd_Click;
             // 
+            // NoMain
+            // 
+            NoMain.Icon = (Icon)resources.GetObject("NoMain.Icon");
+            NoMain.Text = "VrBrowser Overlay";
+            NoMain.Visible = true;
+            NoMain.MouseClick += NoMain_MouseClick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -342,6 +376,7 @@
             Text = "VrBrowser Overlay";
             FormClosing += Form1_FormClosing;
             Shown += Form1_Shown;
+            Resize += Form1_Resize;
             ((System.ComponentModel.ISupportInitialize)NuCurvature).EndInit();
             ((System.ComponentModel.ISupportInitialize)NuOffset).EndInit();
             ((System.ComponentModel.ISupportInitialize)NuSize).EndInit();
@@ -381,5 +416,8 @@
         private ImageList ImButtons;
         private CheckBox ChAudioEnabled;
         private Button BuApplyVrSettings;
+        private CheckBox ChMinimizeToTray;
+        private CheckBox ChMinimizeOnStart;
+        private NotifyIcon NoMain;
     }
 }
