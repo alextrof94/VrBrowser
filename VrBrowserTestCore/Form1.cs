@@ -12,12 +12,14 @@ using VrBrowserTestCore.Properties;
 using System.Windows.Forms;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace VrBrowserTestCore
 {
     public partial class Form1 : Form
     {
         private AppSettings ThisAppSettings = new();
+        readonly static string PathToExe = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
 
         // Overlay
         CVRSystem? VrSystem = null;
@@ -99,6 +101,12 @@ namespace VrBrowserTestCore
                 WindowlessRenderingEnabled = true,
             };
             settings.CefCommandLineArgs.Remove("mute-audio");
+            settings.CachePath = PathToExe + "cefcache\\";
+            if (Directory.Exists(settings.CachePath))
+            {
+                Directory.Delete(settings.CachePath, true);
+            }
+            Directory.CreateDirectory(settings.CachePath);
             Cef.Initialize(settings);
 
             foreach (var tab in ThisAppSettings.Tabs)

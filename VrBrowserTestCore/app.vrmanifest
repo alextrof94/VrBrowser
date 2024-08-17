@@ -1,0 +1,21 @@
+{
+	"applications": [
+		{
+			"app_key": "VrBrowserOverlay",
+			"launch_type": "binary",
+			"binary_path_windows": "VrBrowserTestCore.exe",
+			"is_dashboard_overlay": true,
+
+			"strings": {
+				"en_us": {
+					"name": "VrBrowserOverlay",
+					"description": "Shows browser source in VR Overlay like in OBS"
+				},
+				"ru_ru": {
+					"name": "VrBrowserOverlay",
+					"description": "Отображает источники браузера в ВР оверлее как в OBS"
+				}
+			}
+		}
+	]
+}
