@@ -285,6 +285,8 @@ namespace VrBrowserTestCore
                 PreviewGameWindow.Close();
                 PreviewGameWindow.Dispose();
             }
+            NoMain.Visible = false;
+            NoMain.Dispose();
         }
 
 
@@ -346,12 +348,53 @@ namespace VrBrowserTestCore
 
                 AssociateOverlayToDevice(overlayHandle, HmdId);
                 VrStarted = true;
+
+                Task t = new(() =>
+                {
+                    CheckingForExitSteamVr();
+                });
+                t.Start();
+
                 return true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("VR is not initialized. " + ex.Message);
                 return false;
+            }
+        }
+
+        private void CheckingForExitSteamVr()
+        {
+            while (VrStarted)
+            {
+                var vrEvents = new List<VREvent_t>();
+                var vrEvent = new VREvent_t();
+                uint eventSize = (uint)Marshal.SizeOf(vrEvent);
+                try
+                {
+                    while (OpenVR.System.PollNextEvent(ref vrEvent, eventSize))
+                    {
+                        vrEvents.Add(vrEvent);
+                    }
+                }
+                catch
+                {
+                }
+
+                foreach (var e in vrEvents)
+                {
+                    if ((EVREventType)e.eventType == EVREventType.VREvent_Quit)
+                    {
+                        OpenVR.System.AcknowledgeQuit_Exiting();
+                        VrStarted = false;
+                        this.Invoke(new Action(() =>
+                        {
+                            this.Close();
+                        }));
+                    }
+                }
+                Thread.Sleep(100);
             }
         }
 
